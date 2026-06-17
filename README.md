@@ -35,6 +35,5 @@ These insights empower stakeholders with key business metrics, enabling strategi
 
 This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and share this project with proper attriburion.
 
-## About Me 
-Hi there! I'm **Noma Mgedezi** I'm an IT professional on a mission to share knowlege.
+
 
