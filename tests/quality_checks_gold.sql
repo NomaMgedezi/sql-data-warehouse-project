@@ -4,7 +4,7 @@ Script Purpose:
     This script perfomrs quality check to validate the integrity, consistency, and accurancy
     of the Gold Layer. These checks ensure:
     - Uniqueness of surrogate between fact and dimension tables.
-    - Referentia integrity between fact and dimension tables.
+    - Referential integrity between fact and dimension tables.
     - Validation of relationships in the data model for analytical purposes.
 
 */
