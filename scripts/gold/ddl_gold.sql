@@ -5,10 +5,10 @@ Script Purpose:
     The Gold layer represents the final dimension and fact tables (Star Schema)
 
     Each view performs transformations and combines data from the Silver layer to
-    produce a clean, enriched, and business-ready datasets.
+    produce a clean, enriched, and business ready datasets.
 
-Usage:
-  - These views can be required directly for analytics and reporting.
+
+    These views can be required directly for analytics and reporting.
 */
 
 -- View for Customers Dimensions Table --
@@ -17,17 +17,17 @@ IF OBJECT_ID('gold.dim_customers') IS NOT NULL
 GO
 CREATE VIEW gold.dim_customers AS
 SELECT 
-ROW_NUMBER() OVER (ORDER BY cst_id) AS customer_key, -- Surrogate key
+    ROW_NUMBER() OVER (ORDER BY cst_id) AS customer_key, -- Surrogate key
   	ci.cst_id AS customer_id,
   	ci.cst_key AS customer_number,
   	ci.cst_firstname AS first_name,
   	ci.cst_lastname AS last_name,
-  	la.cntry AS country,
   	ci.cst_marital_status AS marital_status,
 	CASE WHEN ci.cst_gndr != 'n/a' THEN ci.cst_gndr -- CRM is the Master for gender info 
 		ELSE COALESCE(ca.gen, 'n/a')
 	END AS gender, 
 	ca.bdate AS birthdate,
+	la.cntry AS country,
 	ci.cst_create_date AS create_date
 FROM silver.crm_cust_info ci 
 LEFT JOIN silver.erp_cust_az12 ca 
@@ -36,15 +36,15 @@ LEFT JOIN silver.erp_loc_a101 la
 ON		  ci.cst_key = la.cid 
 
 
-	-- View for Products Dimension Table --
+-- View for Products Dimension Table --
 IF OBJECT_ID('gold.dim_products') IS NOT NULL
 	DROP VIEW gold.dim_products;
 GO
 CREATE VIEW gold.dim_products AS
-	SELECT
+SELECT
 	ROW_NUMBER() OVER(ORDER BY pn.prd_start_dt, pn.prd_key) AS product_key,
   	pn.prd_id AS product_id,
-  	pn.prd_key AS product_number ,
+  	pn.prd_key AS product_number,
   	pn.prd_nm AS product_name,
   	pn.cat_id AS category_id,
   	pc.cat AS category,
