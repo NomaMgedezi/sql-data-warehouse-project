@@ -5,13 +5,6 @@ Script Purpose:
 	It performs the following actions:
 	- Truncates the bronze tables before loading data.
 	- Uses the 'BULK INSERT' command to load data from csv Files to bronze tables.
-
-Parameters:
-None.
-  This stored procedure does not accept any parameters or return any values.
-
-Usage Example:
-EXEC bronze.load_bronze;
 */
 
 CREATE OR ALTER PROCEDURE bronze.load_bronze AS  
@@ -22,10 +15,6 @@ BEGIN
 		PRINT '=============================================';
 		PRINT 'Loading Bronze Layer';
 		PRINT '=============================================';
-
-		PRINT '---------------------------------------------';
-		PRINT 'Loading CRM Tables';
-		PRINT '---------------------------------------------';
 
         -- bronze.crm_cust_info --
 		SET @start_time = GETDATE();
@@ -64,10 +53,6 @@ BEGIN
 			TABLOCK
 		);
 
-	
-		PRINT '---------------------------------------------------';
-		PRINT 'Loading ERP Tables';
-		PRINT '---------------------------------------------------';
 
         -- bronze.erp_loc_a101 --
 		TRUNCATE TABLE bronze.erp_loc_a101;
