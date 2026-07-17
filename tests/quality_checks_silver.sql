@@ -41,7 +41,9 @@ FROM silver.crm_cust_info
 
 SELECT * FROM silver.crm_cust_info
 
+	
 -- Checking 'silver.crm_prd_info'
+	
 -- Check For Nulls or Duplicates in Primary Key
 -- Expectation: No Result
 SELECT 
@@ -78,6 +80,7 @@ SELECT * FROM silver.crm_prd_info
 
 
 -- Checking 'silver.crm_sales_details'
+	
 -- Check for Invalid Dates
 -- Expectation: No Invalid Dates
 SELECT 
@@ -109,6 +112,7 @@ SELECT
 
 
 	-- Checking 'silver.erp_cust_az12'
+	
 	-- Identify Out-of-Range Dates
 -- Expectation: Birthdates between 1924-01-01 and Tooday
 SELECT DISTINCT
@@ -123,6 +127,7 @@ FROM silver.erp_cust_az12
 
 
 -- Checking 'silver.erp_loc_a101'
+	
 -- Data Standardazation & Consistency
 SELECT DISTINCT cntry
 FROM silver.erp_loc_a101
@@ -130,6 +135,7 @@ ORDER BY cntry
 
 
 -- Checking 'silver.erp_px_cat_g1v2'
+	
 -- Check for unwanted spaces
 SELECT * FROM bronze.erp_px_cat_g1v2
 WHERE cat != TRIM(cat) OR subcat != TRIM(subcat) OR maintenance != TRIM(maintenance)
